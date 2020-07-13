@@ -25,7 +25,7 @@ def swap(route, i, j):
     return route
 
 
-def sa_2opt(route, dist, t=10000, a=0.95,):
+def sa_2opt(route, dist, t=10000, a=0.99):
     global count
     count = 0
     _route = route.copy()
@@ -43,6 +43,7 @@ def sa_2opt(route, dist, t=10000, a=0.95,):
                     _route = swap(_route, i, j)
                 else:
                     prob = pow(math.e, -cost_diff / t)
+                    np.random.seed()
                     if np.random.rand() < prob:
                         _route = swap(_route, i, j)
                     t = t * a
@@ -54,8 +55,8 @@ if __name__ == '__main__':
     point = createcity(12)
     dist = distance(point)
     test_order = list(np.random.permutation(12))
-    t = 10000
-    a = 0.95
+    t = 100000
+    a = 0.999
     start = time.time()
     best_route, count = sa_2opt(test_order, dist, t, a)
     end = time.time()

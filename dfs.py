@@ -46,9 +46,9 @@ def dfs_best(init_order, dis, tf, route, num):
 
 
 if __name__ == '__main__':
-    point = createcity(10)
+    point = createcity(12)
     dis = distance(point)
-    test_order = list(np.random.permutation(10))
+    test_order = list(np.random.permutation(12))
     tf = [True] * len(test_order)
     route = []
     start = time.time()

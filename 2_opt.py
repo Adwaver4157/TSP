@@ -54,21 +54,22 @@ def improve_with_2opt(visit_order, distance_matrix):
 def local_search(visit_order, distance_matrix, improve_func):
     """Main procedure of local search"""
     #cost_total = calc(visit_order, distance_matrix)
+    _visit_order = visit_order.copy()
 
     while True:
-        improved = improve_func(visit_order, distance_matrix)
+        improved = improve_func(_visit_order, distance_matrix)
         if not improved:
             break
 
-        visit_order = improved
+        _visit_order = improved
 
-    return visit_order
+    return _visit_order
 
 
 # 適当に初期解を生成
-city_xy = createcity(20)
+city_xy = createcity(5)
 distance_matrix = distance(city_xy)
-test_order = list(np.random.permutation(20))
+test_order = list(np.random.permutation(5))
 """
 plot_route(test_order, city_xy)
 total_distance = calc(test_order, distance_matrix)
@@ -77,6 +78,4 @@ print('初期解の総移動距離 = {}'.format(total_distance))
 
 # 近傍を計算
 improved = local_search(test_order, distance_matrix, improve_with_2opt)
-plot_route(improved, city_xy)
-total_distance = calc(improved, distance_matrix)
-print('近傍探索適用後の総移動距離 = {}'.format(total_distance))
+plot_route(test_order, improved, city_xy)

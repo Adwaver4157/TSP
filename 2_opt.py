@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from route import calc
 from distance import createcity, distance
 from plot import plot_route
+import time
 
 
 def calculate_2opt_exchange_cost(visit_order, i, j, distance_matrix):
@@ -66,16 +67,12 @@ def local_search(visit_order, distance_matrix, improve_func):
     return _visit_order
 
 
-# 適当に初期解を生成
-city_xy = createcity(5)
-distance_matrix = distance(city_xy)
-test_order = list(np.random.permutation(5))
-"""
-plot_route(test_order, city_xy)
-total_distance = calc(test_order, distance_matrix)
-print('初期解の総移動距離 = {}'.format(total_distance))
-"""
-
-# 近傍を計算
-improved = local_search(test_order, distance_matrix, improve_with_2opt)
-plot_route(test_order, improved, city_xy)
+if __name__ == '__main__':
+    point = createcity(10)
+    dis = distance(point)
+    test_order = list(np.random.permutation(10))
+    start = time.time()
+    improved = local_search(test_order, dis, improve_with_2opt)
+    end = time.time()
+    print(end - start, "秒")
+    plot_route(test_order, improved, point)

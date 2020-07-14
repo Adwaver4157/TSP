@@ -6,7 +6,7 @@ from route import calc
 
 def plot_route(test_order, order, point):
     dis = distance(point)
-    test_order, _ = calc(test_order, dis)
+    test_order, dista = calc(test_order, dis)
     orders, dist = calc(order, dis)
     x0 = point[test_order[0], 0]
     y0 = point[test_order[0], 1]
@@ -15,6 +15,7 @@ def plot_route(test_order, order, point):
 
     print('original order: {}'.format(test_order[0]))
     print('sorted order: {}'.format(orders[0]))
+    print('default distance: {}'.format(dista))
     print('distance: {}'.format(dist))
 
     fig = plt.figure(figsize=(10, 5))

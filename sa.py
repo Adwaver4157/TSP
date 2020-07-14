@@ -55,8 +55,8 @@ if __name__ == '__main__':
     point = createcity(12)
     dist = distance(point)
     test_order = list(np.random.permutation(12))
-    t = 100000
-    a = 0.999
+    t = 100
+    a = 0.95
     start = time.time()
     best_route, count = sa_2opt(test_order, dist, t, a)
     end = time.time()
